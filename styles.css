@@ -1,0 +1,368 @@
+/* General Styles */
+body {
+  margin: 0;
+  background-color: #1a1a1a;
+  color: #ffffffdd;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 36px;
+  font-weight: 500;
+  height: 60px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+nav:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+nav .svg-container {
+  width: 20px;
+  height: 20px;
+}
+
+nav > div {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  gap: 24px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ecad29;
+}
+
+nav > div .active::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 99px;
+  background-color: #ecad29;
+}
+
+nav > div > .navbar-brand {
+  font-size: 25px;
+  font-family: 'Dune Rise', sans-serif;
+  font-weight: bold;
+  transition: font-size 0.3s ease;
+}
+
+/* Hamburger Menu Icon */
+nav .hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  cursor: pointer;
+}
+
+nav .hamburger div {
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+  nav {
+    padding: 15px 20px;
+  }
+
+  nav > div {
+    gap: 16px;
+  }
+
+  nav .navbar-brand {
+    font-size: 20px; /* Reduce font size for mobile */
+  }
+
+  nav .svg-container {
+    display: none; /* Hide icons on mobile */
+  }
+
+  nav > div > a {
+    display: none; /* Hide menu items */
+  }
+
+  nav .hamburger {
+    display: flex; /* Show hamburger menu on mobile */
+  }
+
+  nav .menu.active {
+    display: block; /* Show menu when hamburger is clicked */
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #1a1a1a;
+    padding: 16px;
+    border-radius: 8px;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  nav .menu a {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+  }
+}
+
+/* Cards */
+.card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-position: center;
+  background-size: cover;
+  box-shadow: 6px 6px 10px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Details Section */
+.details {
+  position: absolute;
+  top: 240px;
+  left: 60px;
+  z-index: 22;
+}
+
+.details .place-box .text {
+  padding-top: 16px;
+  font-size: 20px;
+  position: relative;
+}
+
+.details .place-box .text::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  background-color: white;
+  border-radius: 99px;
+}
+
+.details .title-1,
+.details .title-2 {
+  font-weight: 600;
+  font-size: 72px;
+  font-family: "Oswald", sans-serif;
+}
+.cta {
+  position: relative;
+  z-index: 100; /* Ensure buttons are above other elements */
+}
+
+button {
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+.details .cta {
+  width: 500px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.details .cta .bookmark {
+  border: none;
+  background-color: #ecad29;
+  width: 36px;
+  height: 36px;
+  border-radius: 99px;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+
+.details .cta .discover {
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  height: 36px;
+  border-radius: 99px;
+  color: #ffffff;
+  padding: 4px 24px;
+  font-size: 12px;
+  margin-left: 16px;
+  text-transform: uppercase;
+}
+
+button.bookmark:hover {
+  background-color: #d89c20; /* Darker gold on hover */
+}
+
+button.discover:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Slight white background on hover */
+}
+
+/* Responsive Details Section */
+@media (max-width: 768px) {
+  .details {
+    top: 120px;
+    left: 20px;
+  }
+
+  .details .title-1,
+  .details .title-2 {
+    font-size: 48px; /* Reduce font size for mobile */
+  }
+
+  .details .cta {
+    width: 100%; /* Full width for mobile */
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .details .cta .discover {
+    margin-left: 0;
+  }
+}
+
+/* Pagination */
+.pagination {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pagination .arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 2px solid #ffffff55;
+  display: grid;
+  place-items: center;
+}
+
+.pagination .progress-sub-container {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.pagination .progress-sub-background {
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff33;
+}
+
+.pagination .progress-sub-background .progress-sub-foreground {
+  height: 3px;
+  background-color: #ecad29;
+}
+
+.pagination .slide-numbers {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pagination .slide-numbers .item {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Responsive Pagination */
+@media (max-width: 768px) {
+  .pagination {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+  }
+
+  .pagination .arrow {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pagination .progress-sub-container {
+    width: 150px;
+  }
+
+  .pagination .slide-numbers {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pagination .slide-numbers .item {
+    font-size: 18px;
+  }
+}
+
+/* Cover */
+.cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  z-index: 100;
+}
+/* Full-screen loading screen */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Circular spinner */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hide loader when images load */
+.hidden {
+  display: none !important;
+}
