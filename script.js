@@ -79,7 +79,7 @@ const data = [
       image: 'images/card_images/DIAMOND.png',
       alt: 'Diamond Dune Membership Card'
     }
-  ];
+  ];                    
   
 
 const _ = (id) => document.getElementById(id);
