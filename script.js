@@ -167,41 +167,41 @@ function init() {
     const detailsInactive = detailsEven ? "#details-odd" : "#details-even";
     const { innerHeight: height, innerWidth: width } = window;
 
-    // Adjust card sizes and positions for mobile
+    // Adjust for mobile
     if (width <= 768) {
-        cardWidth = width * 0.8; // 80% of screen width
-        cardHeight = 200; // Fixed height for mobile
-        offsetTop = height - cardHeight - 20; // Adjust to keep cards at the bottom
-        offsetLeft = width * 0.1; // 10% of screen width
-        gap = 20; // Smaller gap for mobile
+        cardWidth = width * 0.4; // Use 90% of screen width
+        cardHeight = height * 0.1; // Occupy 70% of the screen height
+        offsetTop = (height - cardHeight) / 2; // Center vertically
+        offsetLeft = (width - cardWidth) / 2; // Center horizontally
+        gap = 10; // Reduce gap for mobile
     } else {
-        cardWidth = 200; // Default width for desktop
-        cardHeight = 300; // Default height for desktop
-        offsetTop = height - 430; // Default top offset for desktop
-        offsetLeft = width - 830; // Default left offset for desktop
-        gap = 40; // Default gap for desktop
+        cardWidth = 200; // Default for larger screens
+        cardHeight = 300;
+        offsetTop = height - 430;
+        offsetLeft = width - 830;
+        gap = 40;
     }
-    
 
     gsap.set("#pagination", {
         top: offsetTop + 330,
         left: offsetLeft,
-        y: 200,
-        opacity: 0,
+        y: 0,
+        opacity: 1,
         zIndex: 60
     });
 
-    gsap.set("nav", { y: -200, opacity: 0 });
+    gsap.set("nav", { y: 0, opacity: 1 });
 
     gsap.set(getCard(active), {
         x: 0,
         y: 0,
-        width: window.innerWidth,
-        height: window.innerHeight
+        width: cardWidth,
+        height: cardHeight
     });
-    gsap.set(getCardContent(active), { x: 0, y: 0, opacity: 0 });
 
-    gsap.set(detailsActive, { opacity: 0, zIndex: 22, x: -200 });
+    gsap.set(getCardContent(active), { x: 0, y: 0, opacity: 1 });
+
+    gsap.set(detailsActive, { opacity: 1, zIndex: 22, x: 0 });
     gsap.set(detailsInactive, { opacity: 0, zIndex: 12 });
     gsap.set(`${detailsInactive} .text`, { y: 100 });
     gsap.set(`${detailsInactive} .title-1`, { y: 100 });
@@ -215,7 +215,7 @@ function init() {
 
     rest.forEach((i, index) => {
         gsap.set(getCard(i), {
-            x: offsetLeft + 400 + index * (cardWidth + gap),
+            x: offsetLeft + index * (cardWidth + gap),
             y: offsetTop,
             width: cardWidth,
             height: cardHeight,
@@ -223,15 +223,13 @@ function init() {
             borderRadius: 10
         });
         gsap.set(getCardContent(i), {
-            x: offsetLeft + 400 + index * (cardWidth + gap),
+            x: offsetLeft + index * (cardWidth + gap),
             zIndex: 40,
             y: offsetTop + cardHeight - 100
         });
-        gsap.set(getSliderItem(i), { x: (index + 1) * numberSize });
     });
 
     gsap.set(".indicator", { x: -window.innerWidth });
-
     const startDelay = 0.6;
 
     gsap.to(".cover", {
@@ -243,28 +241,7 @@ function init() {
                 loop();
             }, 500);
         }
-    });         
-
-    rest.forEach((i, index) => {
-        gsap.to(getCard(i), {
-            x: offsetLeft + index * (cardWidth + gap),
-            zIndex: 30,
-            delay: 0.05 * index,
-            ease,
-            delay: startDelay
-        });
-        gsap.to(getCardContent(i), {
-            x: offsetLeft + index * (cardWidth + gap),
-            zIndex: 40,
-            delay: 0.05 * index,
-            ease,
-            delay: startDelay
-        });
     });
-
-    gsap.to("#pagination", { y: 0, opacity: 1, ease, delay: startDelay });
-    gsap.to("nav", { y: 0, opacity: 1, ease, delay: startDelay });
-    gsap.to(detailsActive, { opacity: 1, x: 0, ease, delay: startDelay });
 }
 
 let clicks = 0;
