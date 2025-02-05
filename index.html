@@ -45,6 +45,13 @@
               loader.style.display = "none";
           });
       });
+
+      // Function to toggle the menu visibility
+function toggleMenu() {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('active'); // Add or remove the 'active' class to show/hide the menu
+}
+
     </script>
     
     
@@ -68,12 +75,13 @@
        
       
       </div>
-      <div>
-        <div><a href="index.html">Home</a></div>
-    <div><a href="about.html">About</a></div>
-    <div><a href="membeship.HTML">Membership</a></div>
-    <div><a href="contact.html">Contact</a></div>
-       
+      <div class="menu-icon" onclick="toggleMenu()">☰</div> <!-- Hamburger Icon -->
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="#">About</a>
+    <a href="membeship.HTML">Membership</a>
+    <a href="contact.html">Contact</a>
+  </div>
         <!-- <div class="svg-container">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />

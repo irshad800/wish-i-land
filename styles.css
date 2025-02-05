@@ -173,11 +173,26 @@ nav {
   right: 0;
   z-index: 50;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   padding: 20px 36px;
   font-weight: 500;
+  background-color: #333;
+  color: white;
+  background: none; /* Remove background */
 }
+
+nav .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+nav .logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
 nav a {
   text-decoration: none; /* Removes the underline */
   color: inherit; /* Keeps the default text color */
@@ -217,6 +232,55 @@ nav > div:last-child .active {
 }
 .bookmark svg.bookmarked {
   fill: #FFD700;  /* Change the color of the bookmark when it's bookmarked */
+}
+
+.menu-icon {
+  font-size: 30px;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+nav .nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+/* Mobile Specific Styles */
+@media (max-width: 768px) {
+  /* Hide regular nav links on mobile */
+  nav .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    padding: 20px;
+  }
+
+  nav .nav-links a {
+    padding: 10px 0;
+    font-size: 18px;
+    color: white;
+  }
+
+  /* Show the menu icon on mobile */
+  .menu-icon {
+    display: block;
+  }
+
+  /* Display nav links when menu is active */
+  nav.active .nav-links {
+    display: flex;
+  }
 }
 
 nav > div:last-child .active:after {
