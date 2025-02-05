@@ -99,6 +99,8 @@ const cardContents = data.map((i, index) =>
     </div>`
 ).join('');
 
+
+
 // Render Slide Numbers
 const slideNumbers = data.map((_, index) => 
     `<div class="item" id="slide-item-${index}">${index + 1}</div>`
@@ -169,7 +171,7 @@ function init() {
     if (width <= 768) {
         cardWidth = width * 0.8; // 80% of screen width
         cardHeight = 200; // Fixed height for mobile
-        offsetTop = height - 300; // Adjust top offset for mobile
+        offsetTop = height - cardHeight - 20; // Adjust to keep cards at the bottom
         offsetLeft = width * 0.1; // 10% of screen width
         gap = 20; // Smaller gap for mobile
     } else {
@@ -179,6 +181,7 @@ function init() {
         offsetLeft = width - 830; // Default left offset for desktop
         gap = 40; // Default gap for desktop
     }
+    
 
     gsap.set("#pagination", {
         top: offsetTop + 330,

@@ -9,6 +9,8 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+
+
 .card {
   position: absolute;
   left: 0;
@@ -28,7 +30,7 @@ body {
 .card img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the card */
+  object-fit: fill; /* Ensures the image covers the card */
   aspect-ratio: 16 / 9; /* Forces landscape aspect ratio */
 }
 .card-content {
