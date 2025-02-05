@@ -108,6 +108,18 @@ const slideNumbers = data.map((_, index) =>
 _('demo').innerHTML = cards + cardContents;
 _('slide-numbers').innerHTML = slideNumbers;
 
+// Button Click Event Listeners
+document.querySelector(".arrow-left").addEventListener("click", () => {
+    order.unshift(order.pop()); // Move last to first
+    updateCards();
+});
+
+document.querySelector(".arrow-right").addEventListener("click", () => {
+    order.push(order.shift()); // Move first to last
+    updateCards();
+});
+
+
 const range = (n) => Array(n).fill(0).map((i, j) => i + j);
 const set = gsap.set;
 
