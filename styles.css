@@ -491,20 +491,24 @@ nav > div:last-child .active:after {
     height: 100vh; /* Ensure body covers the full screen height */
   }
 
-  .card {
-    width: 100vw; /* Ensure card width matches viewport width */
-    height: 100vh; /* Ensure card height matches viewport height */
-    background-size: cover; /* Ensures the image covers the entire area */
-    background-position: center; /* Ensures the image is centered */
-    border-radius: 0; /* Remove border radius for full-screen effect */
-    overflow: hidden; /* Prevent content from overflowing */
+  @media (max-width: 768px) {
+    .card {
+      width: 100vw; /* Ensure the card fills the viewport width */
+      height: 100vh; /* Ensure the card fills the viewport height */
+      background-size: cover !important; /* Ensures full coverage */
+      background-position: center center !important; /* Centers the image */
+      background-repeat: no-repeat !important; /* Prevents tiling */
+      border-radius: 0; /* Removes rounded corners */
+      overflow: hidden; /* Prevents any overflow */
+    }
+  
+    .card img {
+      width: 100vw; /* Force the image to cover full width */
+      height: 100vh; /* Force the image to cover full height */
+      object-fit: cover; /* Ensures the image fully fills the screen */
+    }
   }
-
-  .card img {
-    width: 100%; /* Ensure image stretches to fill the full width */
-    height: 100%; /* Ensure image height is the full screen height */
-    object-fit: cover; /* Makes sure the image is properly scaled */
-  }
+  
 
   .card-content {
     padding-left: 10px; /* Reduce padding for mobile */

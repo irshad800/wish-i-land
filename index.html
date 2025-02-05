@@ -47,10 +47,11 @@
       });
 
       // Function to toggle the menu visibility
-function toggleMenu() {
-  const nav = document.querySelector('nav');
-  nav.classList.toggle('active'); // Add or remove the 'active' class to show/hide the menu
-}
+      document.getElementById('hamburger-menu').addEventListener('click', function() {
+  this.classList.toggle('active'); /* Toggle hamburger icon animation */
+  document.getElementById('nav-menu').classList.toggle('active'); /* Toggle menu visibility */
+});
+
 
     </script>
     
@@ -76,6 +77,7 @@ function toggleMenu() {
       
       </div>
       <div class="menu-icon" onclick="toggleMenu()">☰</div> <!-- Hamburger Icon -->
+      
   <div class="nav-links" id="navLinks">
     <a href="index.html">Home</a>
     <a href="#">About</a>
