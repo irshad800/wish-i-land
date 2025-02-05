@@ -91,14 +91,11 @@ const cards = data.map((i, index) =>
     </div>`
 ).join('');
 
-// Render Card Contents
+// Render Card Contents (Only Price and Name for Cards)
 const cardContents = data.map((i, index) => 
     `<div class="card-content" id="card-content-${index}">
-        <div class="content-start"></div>
         <div class="content-place">${i.place}</div>
         <div class="content-title-1">${i.title}</div>
-        <div class="content-title-2">${i.title2}</div>
-        <div class="content-description">${i.description}</div>
     </div>`
 ).join('');
 
@@ -143,17 +140,33 @@ let offsetTop = 200;
 let offsetLeft = 700;
 let cardWidth = 200;
 let cardHeight = 300;
+// let cardWidth = 300; // Wider width for landscape cards
+// let cardHeight = 200; // Shorter height for landscape cards
+
+
 let gap = 40;
 let numberSize = 50;
 const ease = "sine.inOut";
-
 function init() {
     const [active, ...rest] = order;
     const detailsActive = detailsEven ? "#details-even" : "#details-odd";
     const detailsInactive = detailsEven ? "#details-odd" : "#details-even";
     const { innerHeight: height, innerWidth: width } = window;
-    offsetTop = height - 430;
-    offsetLeft = width - 830;
+
+    // Adjust card sizes and positions for mobile
+    if (width <= 768) {
+        cardWidth = width * 0.8; // 80% of screen width
+        cardHeight = 200; // Fixed height for mobile
+        offsetTop = height - 300; // Adjust top offset for mobile
+        offsetLeft = width * 0.1; // 10% of screen width
+        gap = 20; // Smaller gap for mobile
+    } else {
+        cardWidth = 200; // Default width for desktop
+        cardHeight = 300; // Default height for desktop
+        offsetTop = height - 430; // Default top offset for desktop
+        offsetLeft = width - 830; // Default left offset for desktop
+        gap = 40; // Default gap for desktop
+    }
 
     gsap.set("#pagination", {
         top: offsetTop + 330,
@@ -215,7 +228,7 @@ function init() {
                 loop();
             }, 500);
         }
-    });
+    });         
 
     rest.forEach((i, index) => {
         gsap.to(getCard(i), {

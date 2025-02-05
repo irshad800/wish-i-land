@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup | WISH I CLUB</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            background: url("login-hero-bg.jpg"), #000;
+            background-position: center;
+            background-size: cover;
+        }
+        .wrapper {
+            width: 400px;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #fff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .input-field {
+            position: relative;
+            border-bottom: 2px solid #ccc;
+            margin: 15px 0;
+        }
+        .input-field label {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            font-size: 16px;
+            pointer-events: none;
+            transition: 0.15s ease;
+        }
+        .input-field input {
+            width: 100%;
+            height: 40px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #fff;
+        }
+        .input-field input:focus ~ label,
+        .input-field input:valid ~ label {
+            font-size: 0.8rem;
+            top: 10px;
+            transform: translateY(-120%);
+        }
+        .forget {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 25px 0 35px 0;
+        }
+        #remember {
+            accent-color: #fff;
+        }
+        .forget label {
+            display: flex;
+            align-items: center;
+        }
+        .forget label p {
+            margin-left: 8px;
+        }
+        .wrapper a {
+            color: #efefef;
+            text-decoration: none;
+        }
+        .wrapper a:hover {
+            text-decoration: underline;
+        }
+        button {
+            background: #fff;
+            color: #000;
+            font-weight: 600;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 16px;
+            border: 2px solid transparent;
+            transition: 0.3s ease;
+        }
+        button:hover {
+            color: #fff;
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .google-signin {
+            background: #fff;
+            color: #000;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid #ccc;
+        }
+        .google-signin img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .google-signin:hover {
+            background: #f1f1f1;
+        }
+        .register, .login {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .hidden {
+            display: none;
+        }.input-field.phone-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.input-field.phone-field select {
+    padding: 8px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-field.phone-field input {
+    flex: 1;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-field.gender-field {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.input-field.gender-field label {
+    font-size: 14px;
+}
+
+.input-field.file-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-field.file-input input {
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #000;
+    border-radius: 4px;
+}
+
+.gender-field {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.gender-options {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjust spacing between radio buttons */
+    margin-top: 5px;
+}
+
+.gender-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between radio button and text */
+    font-size: 14px;
+}
+
+.gender-options input[type="radio"] {
+    margin: 0; /* Remove default margin */
+    width: 16px; /* Set a fixed width for radio buttons */
+    height: 16px; /* Set a fixed height for radio buttons */
+}
+
+
+    </style>
+</head>
+<body>
+
+       <!-- Login Form -->
+       <div class="wrapper" id="login-form">
+        <form action="#">
+            <h2>Login</h2>
+            <div class="input-field">
+                <input type="text" required>
+                <label>Enter your email</label>
+            </div>
+            <div class="input-field">
+                <input type="password" required>
+                <label>Enter your password</label>
+            </div>
+            <div class="forget">
+                <label for="remember">
+                    <input type="checkbox" id="remember">
+                    <p>Remember me</p>
+                </label>
+                <a href="#">Forgot password?</a>
+            </div>
+            <button type="submit">Log In</button>
+            <div class="google-signin">
+                <img src="../images/google/image.png" alt="Google Logo">
+                Sign in with Google
+            </div>
+            <div class="register">
+                <p>Don't have an account? <a href="#" onclick="toggleForms()">Register</a></p>
+            </div>
+        </form>
+    </div> <!-- ✅ **Fixed: Added missing closing div here!** -->
+
+    <!-- Sign-Up Form -->
+    <div class="wrapper hidden" id="signup-form">
+        <form action="#">
+            <h2>Sign Up</h2>
+
+            <!-- Image Upload -->
+            <div class="input-field file-input">
+                <label for="profile-pic">Upload Profile Picture</label>
+                <input type="file" id="profile-pic" accept="image/*">
+            </div>
+
+            <!-- Full Name -->
+            <div class="input-field">
+                <input type="text" required>
+                <label>Full Name</label>
+            </div>
+
+            <!-- Email -->
+            <div class="input-field">
+                <input type="email" required>
+                <label>Email</label>
+            </div>
+
+            <!-- Phone Number with Country Code -->
+            <div class="input-field phone-field">
+                <select id="country-code">
+                    <option value="+1">+1 (USA)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <option value="+91">+91 (India)</option>
+                    <option value="+61">+61 (Australia)</option>
+                    <option value="+81">+81 (Japan)</option>
+                </select>
+                <input type="tel" required placeholder="Phone Number">
+            </div>
+
+            <!-- Password -->
+            <div class="input-field">
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+
+         
+            <div class="input-field gender-field">
+              
+                <div class="gender-options">
+                    <label>
+                        <input type="radio" name="gender" value="male" required> Male
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="female"> Female
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="other"> Other
+                    </label>
+                </div>
+            </div>
+
+            <!-- Sign Up Button -->
+            <button type="submit">Sign Up</button>
+
+            <!-- Google Sign-In -->
+            <div class="google-signin">
+                <img src="../images/google/image.png" alt="Google Logo">
+                Sign up with Google
+            </div>
+
+            <!-- Switch to Login -->
+            <div class="login">
+                <p>Already have an account? <a href="#" onclick="toggleForms()">Log In</a></p>
+            </div>
+        </form>
+    </div>
+
+    
+
+
+    <script>
+        function toggleForms() {
+            document.getElementById("login-form").classList.toggle("hidden");
+            document.getElementById("signup-form").classList.toggle("hidden");
+        }
+    </script>
+
+</body>
+</html>

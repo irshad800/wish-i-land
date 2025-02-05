@@ -21,28 +21,35 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-}
-.card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: fill; /* Ensure the image fills the entire card */
-  visibility: visible; /* Ensure the image is visible */
+  border-radius: 20px; /* Adjust the value for more/less curvature */
+  overflow: hidden; /* Ensures content doesn't spill out */
 }
 
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the card */
+  aspect-ratio: 16 / 9; /* Forces landscape aspect ratio */
+}
 .card-content {
   position: absolute;
   left: 0;
   top: 0;
   color: rgba(255, 255, 255, 0.87);
   padding-left: 16px;
-  z-index: 40; /* Ensure the content appears on top of the image */
+  z-index: 40;
+  text-align: center; /* Center text for better appearance */
 }
 
 .content-place {
-  margin-top: 6px;
-  font-size: 13px;
+  font-size: 16px; /* Adjust font size for price */
   font-weight: 500;
+  margin-bottom: 8px; /* Add spacing between price and name */
+}
+
+.content-title-1 {
+  font-size: 20px; /* Adjust font size for name */
+  font-weight: 600;
 }
 
 .content-title-1,
@@ -169,6 +176,14 @@ nav {
   padding: 20px 36px;
   font-weight: 500;
 }
+nav a {
+  text-decoration: none; /* Removes the underline */
+  color: inherit; /* Keeps the default text color */
+}
+
+nav a:hover {
+  color: #ff6600; /* Change color on hover if needed */
+}
 
 nav svg {
   width: 20px;
@@ -211,6 +226,34 @@ nav > div:last-child .active:after {
   height: 3px;
   border-radius: 99px;
   background-color: #ecad29;
+}
+.svg-container img {
+  width: auto; /* Adjust width dynamically */
+  height: auto; /* Adjust height dynamically */
+  max-width: 400px; /* Adjust as needed */
+  max-height: 80px; /* Adjust as needed */
+}
+
+.logo-container {
+  display: flex; /* Enables horizontal layout */
+  align-items: center; /* Aligns items vertically */
+  gap: 15px; /* Space between image and text */
+  white-space: nowrap; /* Prevents text from wrapping to a new line */
+}
+
+.logo-container img {
+  width: auto;
+  height: auto;
+  max-width: 600px; /* Adjust logo size */
+  max-height: 100px; /* Adjust height as needed */
+}
+
+.logo-text {
+  font-size: 24px; /* Increase font size */
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  white-space: nowrap; /* Ensures text stays in one line */
 }
 
 .indicator {
@@ -327,3 +370,149 @@ nav > div:last-child .active:after {
   padding-left: 16px;
   z-index: 40;
 }
+/* Circular Loader Container */
+#loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  z-index: 9999;
+  display: none; /* Hidden by default */
+}
+
+/* SVG Loader */
+#loader svg {
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animated Circle */
+#loader circle {
+  fill: none;
+  stroke: #ff6600; /* Attractive Orange */
+  stroke-width: 5;
+  stroke-dasharray: 125;
+  stroke-dashoffset: 125;
+  stroke-linecap: round;
+  animation: spin 1.5s linear infinite, glow 1.5s ease-in-out infinite alternate;
+}
+
+/* Circular Animation */
+@keyframes spin {
+  0% { stroke-dashoffset: 125; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Glowing Effect */
+@keyframes glow {
+  0% { stroke: #ff6600; stroke-opacity: 0.7; }
+  100% { stroke: #ff3300; stroke-opacity: 1; }
+}
+
+/* Fade In Effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
+  to { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+}
+
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  body {
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
+
+  .card {
+      width: 90%; /* Adjust card width for mobile */
+      height: 200px; /* Adjust card height for mobile */
+      border-radius: 10px; /* Smaller border radius for mobile */
+  }
+
+  .card img {
+      aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  }
+
+  .card-content {
+      padding-left: 10px; /* Reduce padding for mobile */
+      font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .content-place {
+      font-size: 14px; /* Adjust font size for mobile */
+  }
+
+  .content-title-1 {
+      font-size: 16px; /* Adjust font size for mobile */
+  }
+
+  .details {
+      top: 120px; /* Adjust position for mobile */
+      left: 20px; /* Adjust position for mobile */
+  }
+
+  .details .title-1 {
+      font-size: 36px; /* Smaller font size for mobile */
+  }
+
+  .details .title-2 {
+      font-size: 20px; /* Smaller font size for mobile */
+  }
+
+  .details .desc {
+      width: 90%; /* Adjust width for mobile */
+      font-size: 14px; /* Smaller font size for mobile */
+  }
+
+  .details .cta {
+      width: 90%; /* Adjust width for mobile */
+      flex-direction: column; /* Stack buttons vertically */
+  }
+
+  .details .cta .discover {
+      margin-left: 0; /* Remove margin for stacked buttons */
+      margin-top: 10px; /* Add spacing between buttons */
+  }
+
+  nav {
+      padding: 10px 20px; /* Reduce padding for mobile */
+  }
+
+  nav > div {
+      font-size: 12px; /* Smaller font size for mobile */
+  }
+
+  .pagination {
+      top: auto; /* Adjust position for mobile */
+      bottom: 20px; /* Move pagination to the bottom */
+      left: 50%; /* Center pagination */
+      transform: translateX(-50%); /* Center pagination */
+  }
+
+  .pagination .progress-sub-container {
+      width: 80%; /* Adjust width for mobile */
+  }
+
+  .pagination .arrow {
+      width: 40px; /* Smaller arrow buttons for mobile */
+      height: 40px; /* Smaller arrow buttons for mobile */
+  }
+
+  .pagination .arrow svg {
+      width: 20px; /* Smaller arrow icons for mobile */
+      height: 20px; /* Smaller arrow icons for mobile */
+  }
+
+  .pagination .slide-numbers {
+      width: 40px; /* Smaller slide numbers for mobile */
+      height: 40px; /* Smaller slide numbers for mobile */
+  }
+
+  .pagination .slide-numbers .item {
+      font-size: 24px; /* Smaller font size for mobile */
+  }
+}
+
+  

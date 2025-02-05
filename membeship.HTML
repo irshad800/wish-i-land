@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wish I Club</title>
+  <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="images\Wish Club Logo.JPG" type="image/x-icon">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -106,18 +107,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Align content to the top */
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   z-index: 9999;
-  overflow-y: auto;
+  overflow-y: auto; /* Enable vertical scrolling */
   padding: 20px;
 }
-
+.fullscreen-content {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
 /* Fullscreen Title */
 .fullscreen-title {
-  font-size: 48px;
+  font-size: 68px;
   font-weight: bold;
   font-family: 'Diamond Dune', serif;
   color: white;
@@ -142,26 +150,30 @@ body {
   gap: 10px;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  flex-wrap: nowrap; /* Prevent wrapping */
+  width: 100%; /* Full width of the screen */
+  padding: 5%; /* 10% total padding (5% on each side) */
+  box-sizing: border-box; /* Ensures padding doesn't affect width calculation */
+  flex-wrap: nowrap; /* Prevent wrapping on large screens */
 }
 
 /* Fullscreen Images */
 .fullscreen img {
-  width: 50%;
-  max-height: 50vh;
-  object-fit: cover;
-  border-radius: 10px;
+  width: 100%; /* Fill available space inside the container */
+  max-height: 70vh; /* Limit height for better layout */
+  object-fit: cover; /* Ensures images fill the space without distortion */
+  border-radius: 10px; /* Optional rounded corners */
 }
 
 /* Responsive: Stack Images on Smaller Screens */
 @media (max-width: 768px) {
   .image-container {
-    flex-direction: column;
+    flex-direction: column; /* Stack images vertically */
+    padding: 5%; /* Maintain 10% total padding */
   }
 
   .fullscreen img {
-    width: 100%;
+    width: 100%; /* Full width inside container */
+    max-height: auto; /* Remove height restriction */
   }
 }
 
@@ -214,6 +226,20 @@ body {
 
 
 /* Text in Details */
+.details-container {
+  width: 90%;
+  max-width: 1000px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+  padding: 30px;
+  color: white;
+  text-align: left;
+  border-radius: 10px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
+  overflow-y: auto; /* Enable scrolling for details */
+  max-height: 50vh; /* Limit height for scrolling */
+}
+
 .detail-text {
   font-size: 18px;
   font-weight: bold;
@@ -221,6 +247,9 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   line-height: 1.6;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
 }
 
 .detail-text:first-child {
@@ -235,6 +264,27 @@ body {
   color: #D1D1D1;
 }
 
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .image-container {
+    flex-direction: column;
+  }
+
+  .fullscreen img {
+    width: 100%;
+  }
+
+  .details-container {
+    max-height: 60vh; /* Adjust height for smaller screens */
+  }
+}
 /* Fade-In Animation */
 .details p {
   opacity: 0;
@@ -277,29 +327,101 @@ body {
   </style>
 </head>
 <body>
+  <div class="indicator"></div>
+  <div id="loader">
+    <svg viewBox="0 0 50 50">
+      <circle cx="25" cy="25" r="20"></circle>
+    </svg>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("nav a");
+        const loader = document.getElementById("loader");
+  
+        links.forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault(); // Prevent default navigation temporarily
+                loader.style.display = "block"; // Show loader
+  
+                setTimeout(() => {
+                    window.location.href = this.href; // Navigate to the page
+                }, 1200); // Delay for smooth effect
+            });
+        });
+  
+        // Hide loader when the page fully loads
+        window.addEventListener("load", () => {
+            loader.style.display = "none";
+        });
+    });
+  </script>
+  
+
+
+  <nav>
+    <div>
+      <div class="svg-container">
+        <div class="logo-container">
+         
+          <img src="images/Wish Club Logo.JPG" alt="Wish Club Logo">
+          <a class="logo-text" href="index.html" style="font-size: 20px; font-family: 'Dune Rise', sans-serif;">
+            WISH I CLUB
+          </a>
+          <!-- <div class="logo-text">WISH I CLUB</div> -->
+      </div>
+      
+
+
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+        </svg>
+      </div>
+     
+    
+    </div>
+    <div>
+      <div><a href="index.html">Home</a></div>
+  <div><a href="about.html">About</a></div>
+  <div><a href="membeship.HTML">Membership</a></div>
+  <div><a href="contact.html">Contact</a></div>
+     
+      <!-- <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+      </div>
+      <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+        </svg>
+      </div> -->
+    </div>
+  </nav>
+
   <h2 class="choose-heading">Choose a Card</h2> <!-- Positioned above the gallery -->
   <div class="gallery" id="gallery"></div>
 
   <div class="fullscreen" id="fullscreenView">
     <button class="close-btn" onclick="closeFullscreen()">X</button>
-    <h2 id="productName" style="visibility: visible; font-size: 48px; font-weight: bold; font-family: 'Diamond Dune', serif; color: white; text-align: center; text-transform: uppercase;"></h2>
-  
-    <div class="image-container">
-      <img id="fullscreenImg" src="" alt="Fullscreen Image">
-      <img id="fullscreenImg2" src="" alt="Fullscreen Image 2">
-    </div>
-    <div class="details">
-      <p id="productPrice" class="detail-text"></p>
-      <p id="productDetails" class="detail-text"></p>
-      <p id="productBenefits" class="detail-text"></p>
-      <p id="paymentPlans" class="detail-text"></p>
-      <p id="registration" class="detail-text"></p>
-      <p id="dueDate" class="detail-text"></p>
-      <p id="startDate" class="detail-text"></p>
-      <p id="cancellationPolicy" class="detail-text"></p>
-      <p id="wishCoins" class="detail-text"></p>
-      <p id="coinBenefits" class="detail-text"></p>
-      <p id="beneficiaries" class="detail-text"></p>
+    <div class="fullscreen-content">
+      <h2 id="productName" style="visibility: visible; font-size: 48px; font-weight: bold; font-family: 'Diamond Dune', serif; color: white; text-align: center; text-transform: uppercase;"></h2>
+      <div class="image-container">
+        <img id="fullscreenImg" src="" alt="Fullscreen Image">
+        <img id="fullscreenImg2" src="" alt="Fullscreen Image 2">
+      </div>
+      <div class="details-container">
+        <p id="productPrice" class="detail-text"></p>
+        <p id="productDetails" class="detail-text"></p>
+        <p id="productBenefits" class="detail-text"></p>
+        <p id="paymentPlans" class="detail-text"></p>
+        <p id="registration" class="detail-text"></p>
+        <p id="dueDate" class="detail-text"></p>
+        <p id="startDate" class="detail-text"></p>
+        <p id="cancellationPolicy" class="detail-text"></p>
+        <p id="wishCoins" class="detail-text"></p>
+        <p id="coinBenefits" class="detail-text"></p>
+        <p id="beneficiaries" class="detail-text"></p>
+      </div>
     </div>
   </div>
 
