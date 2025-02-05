@@ -420,108 +420,112 @@ nav > div:last-child .active:after {
   to { opacity: 1; transform: scale(1) translate(-50%, -50%); }
 }
 
-
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   body {
-    background-size: cover; /* Ensures the image covers the entire screen */
-    background-position: center center; /* Center the image */
-    background-attachment: fixed; /* Keeps the background fixed during scrolling */
+    overflow: hidden; /* Prevent scrolling */
     height: 100vh; /* Ensure body covers the full screen height */
   }
 
   .card {
-    width: 100%;
-    height: 100vh; /* Make sure the height fits the full viewport */
+    width: 100vw; /* Ensure card width matches viewport width */
+    height: 100vh; /* Ensure card height matches viewport height */
     background-size: cover; /* Ensures the image covers the entire area */
     background-position: center; /* Ensures the image is centered */
-}
+    border-radius: 0; /* Remove border radius for full-screen effect */
+    overflow: hidden; /* Prevent content from overflowing */
+  }
 
-.card img {
-    width: 100%;  /* Ensures image stretches to fill the full width */
-    height: 100vh; /* Ensures image height is the full screen height */
+  .card img {
+    width: 100%; /* Ensure image stretches to fill the full width */
+    height: 100%; /* Ensure image height is the full screen height */
     object-fit: cover; /* Makes sure the image is properly scaled */
-}
+  }
+
   .card-content {
-      padding-left: 10px; /* Reduce padding for mobile */
-      font-size: 14px; /* Smaller font size for mobile */
+    padding-left: 10px; /* Reduce padding for mobile */
+    font-size: 14px; /* Smaller font size for mobile */
+    position: absolute;
+    bottom: 20px; /* Position content at the bottom */
+    left: 10px; /* Adjust left position */
+    right: 10px; /* Adjust right position */
+    text-align: center; /* Center text for better appearance */
   }
 
   .content-place {
-      font-size: 14px; /* Adjust font size for mobile */
+    font-size: 14px; /* Adjust font size for mobile */
   }
 
   .content-title-1 {
-      font-size: 16px; /* Adjust font size for mobile */
+    font-size: 16px; /* Adjust font size for mobile */
   }
 
   .details {
-      top: 120px; /* Adjust position for mobile */
-      left: 20px; /* Adjust position for mobile */
+    top: 120px; /* Adjust position for mobile */
+    left: 20px; /* Adjust position for mobile */
   }
 
   .details .title-1 {
-      font-size: 36px; /* Smaller font size for mobile */
+    font-size: 36px; /* Smaller font size for mobile */
   }
 
   .details .title-2 {
-      font-size: 20px; /* Smaller font size for mobile */
+    font-size: 20px; /* Smaller font size for mobile */
   }
 
   .details .desc {
-      width: 90%; /* Adjust width for mobile */
-      font-size: 14px; /* Smaller font size for mobile */
+    width: 90%; /* Adjust width for mobile */
+    font-size: 14px; /* Smaller font size for mobile */
   }
 
   .details .cta {
-      width: 90%; /* Adjust width for mobile */
-      flex-direction: column; /* Stack buttons vertically */
+    width: 90%; /* Adjust width for mobile */
+    flex-direction: column; /* Stack buttons vertically */
   }
 
   .details .cta .discover {
-      margin-left: 0; /* Remove margin for stacked buttons */
-      margin-top: 10px; /* Add spacing between buttons */
+    margin-left: 0; /* Remove margin for stacked buttons */
+    margin-top: 10px; /* Add spacing between buttons */
   }
 
   nav {
-      padding: 10px 20px; /* Reduce padding for mobile */
+    padding: 10px 20px; /* Reduce padding for mobile */
   }
 
   nav > div {
-      font-size: 12px; /* Smaller font size for mobile */
+    font-size: 12px; /* Smaller font size for mobile */
   }
 
   .pagination {
-      top: auto; /* Adjust position for mobile */
-      bottom: 20px; /* Move pagination to the bottom */
-      left: 50%; /* Center pagination */
-      transform: translateX(-50%); /* Center pagination */
+    top: auto; /* Adjust position for mobile */
+    bottom: 20px; /* Move pagination to the bottom */
+    left: 50%; /* Center pagination */
+    transform: translateX(-50%); /* Center pagination */
   }
 
   .pagination .progress-sub-container {
-      width: 80%; /* Adjust width for mobile */
+    width: 80%; /* Adjust width for mobile */
   }
 
   .pagination .arrow {
-      width: 40px; /* Smaller arrow buttons for mobile */
-      height: 40px; /* Smaller arrow buttons for mobile */
+    width: 40px; /* Smaller arrow buttons for mobile */
+    height: 40px; /* Smaller arrow buttons for mobile */
   }
 
   .pagination .arrow svg {
-      width: 20px; /* Smaller arrow icons for mobile */
-      height: 20px; /* Smaller arrow icons for mobile */
+    width: 20px; /* Smaller arrow icons for mobile */
+    height: 20px; /* Smaller arrow icons for mobile */
   }
 
   .pagination .slide-numbers {
-      width: 40px; /* Smaller slide numbers for mobile */
-      height: 40px; /* Smaller slide numbers for mobile */
+    width: 40px; /* Smaller slide numbers for mobile */
+    height: 40px; /* Smaller slide numbers for mobile */
   }
 
   .pagination .slide-numbers .item {
-      font-size: 24px; /* Smaller font size for mobile */
+    font-size: 24px; /* Smaller font size for mobile */
   }
 }
-
 @media (max-width: 768px) {
   .full-card {
       width: 100%;
