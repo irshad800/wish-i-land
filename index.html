@@ -49,7 +49,9 @@
           window.addEventListener("load", () => {
               loader.style.display = "none";
           });
-      });
+      }
+    
+    );
 
  
   
@@ -63,31 +65,53 @@
     
     
 
-    <nav class="navbar">
-      <!-- Logo Section -->
-      <div class="logo-container">
-          <img src="images/Wish Club Logo.JPG" alt="Wish Club Logo">
-          <a class="logo-text" href="index.html">WISH I CLUB</a>
-      </div>
-  
-      <!-- Mobile Menu Icon -->
-      <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-  
-      <!-- Navigation Menu -->
-      <ul class="menu">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="membeship.HTML">Membership</a></li>
-          <li><a href="#">Contact</a></li>
-      </ul>
-  
-      <!-- User Icon -->
-      <div class="svg-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"/>
-          </svg>
-      </div>
-  </nav>
+ <nav class="navbar">
+ 
+
+    <!-- Logo Section -->
+    <div class="logo-container">
+        <img src="images/Wish Club Logo.JPG" alt="Wish Club Logo">
+        <a class="logo-text" href="index.html">WISH I CLUB</a>
+    </div>
+
+    <!-- Mobile Menu Icon -->
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+
+    <!-- Navigation Menu -->
+    <ul class="menu"> 
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+<!-- User Icon (Click to Open Login Popup) -->
+<div class="user-icon" onclick="openLoginPopup()">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"/>
+  </svg>
+</div>
+
+<!-- Popup Container -->
+<!-- Popup Container -->
+<div id="loginPopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closeLoginPopup()">&times;</span>
+    <iframe src="login.html" width="100%" height="400px" frameborder="0"></iframe>
+  </div>
+</div>
+
+</div>
+  <script>// JavaScript to open and close the popup
+    function openLoginPopup() {
+      document.getElementById("loginPopup").style.display = "block";
+    }
+    
+    function closeLoginPopup() {
+      document.getElementById("loginPopup").style.display = "none";
+    }
+</script>
+</nav>
+
   
   <script>
       // JavaScript to toggle the mobile menu
