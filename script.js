@@ -482,21 +482,33 @@ async function loadImage(src) {
 }
 
 async function loadImages() {
-    const promises = data.map(({ image }) => loadImage(image));
-    try {
-        return await Promise.all(promises);
-    } catch (error) {
-        console.error(error);
+    const promises = data.map(({ image }) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = image;
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+    });
+    await Promise.all(promises);
+  }
+  
+  async function start() {
+    const loader = document.getElementById("loader");
+    if (loader) {
+      loader.style.display = "flex";
     }
-}
-
-async function start() {
+  
     try {
-        await loadImages();
-        init();
+      await loadImages();
+      init();
     } catch (error) {
-        console.error("One or more images failed to load", error);
+      console.error("One or more images failed to load", error);
     }
-}
-
-start();
+  
+    if (loader) {
+      loader.style.display = "none";
+    }
+  }
+  
+  start();
