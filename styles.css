@@ -498,6 +498,7 @@ nav > div:last-child .active:after {
       .card {
         width: 100vw; /* Full width */
         height: 100vh; /* Full height */
+        text-align: center; /* Center the text */
         background-size: cover !important; /* Ensures it fills the screen */
         background-position: center center !important; /* Centers the image */
         background-repeat: no-repeat !important; /* Prevents repetition */
@@ -536,13 +537,17 @@ nav > div:last-child .active:after {
   }
 
   .content-place {
-    font-size: 14px; /* Adjust font size for mobile */
-  }
+    font-size: 18px; /* Adjust font size for mobile */
+    font-weight: bold;
+    color: #ffffff;
+}
 
-  .content-title-1 {
-    font-size: 16px; /* Adjust font size for mobile */
-  }
-
+.content-title-1 {
+    font-size: 22px; /* Make title bigger for readability */
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 5px;
+}
   .details {
     top: 120px; /* Adjust position for mobile */
     left: 20px; /* Adjust position for mobile */
