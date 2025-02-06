@@ -302,32 +302,30 @@ nav > div:last-child .active:after {
   max-height: 80px; /* Adjust as needed */
 }
 
+/* Logo and Icons */
 .logo-container {
-  display: flex; /* Enables horizontal layout */
-  align-items: center; /* Aligns items vertically */
-  gap: 15px; /* Space between image and text */
-  white-space: nowrap; /* Prevents text from wrapping to a new line */
+  display: flex;
+  align-items: center;
 }
 
 .logo-container img {
-  width: auto;
-  height: auto;
-  max-width: 600px; /* Adjust logo size */
-  max-height: 100px; /* Adjust height as needed */
+  height: 90px; /* Increased size */
+  margin-right: 10px;
 }
 
-.logo-text {
+.logo-text {  
   font-size: 20px;
-  color: black;
+  font-family: 'Dune Rise', sans-serif;
+  color: white;
   text-decoration: none;
 }
-
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 20px 25px;
+  width: 100%;
 }
 .indicator {
   position: fixed;
@@ -674,13 +672,17 @@ nav > div:last-child .active:after {
   }
 }
 
-/* Menu */
+/* Menu Styling */
 .menu {
   display: flex;
-  gap: 20px;
   list-style: none;
   margin: 0;
   padding: 0;
+  gap: 25px;
+}
+
+.menu li {
+  display: inline-block;
 }
 
 .menu li a {
@@ -689,32 +691,41 @@ nav > div:last-child .active:after {
   color: white;
   text-decoration: none;
   padding: 10px 15px;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
 .menu li a:hover {
-  color: #555; /* Slight color change on hover */
+  color: #ff9800;
 }
 
-/* Mobile Menu */
+/* Mobile Menu Button */
 .menu-toggle {
   display: none;
-  font-size: 24px;
-  color: wheat;
+  font-size: 30px;
   cursor: pointer;
 }
 
+/* SVG Icons */
+.svg-container svg {
+  width: 30px;
+  height: 30px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+
+  
   .menu {
       display: none;
       flex-direction: column;
       width: 100%;
       position: absolute;
+      background-color: #333;
       top: 60px;
       left: 0;
+      background: grey;
       text-align: center;
       padding: 10px 0;
-      background: white; /* Visible only on mobile dropdown */
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
 
@@ -725,4 +736,19 @@ nav > div:last-child .active:after {
   .menu-toggle {
       display: block;
   }
+
+  .menu li {
+      width: 100%;
+  }
+  
+
+  .menu li a {
+      display: block;
+      padding: 15px;
+  }
+}
+
+/* When the menu is active */
+nav.active .menu {
+  display: flex; /* Display menu when active */
 }

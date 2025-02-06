@@ -6,6 +6,8 @@
     <title>WISH I CLUB</title>
     <link rel="icon" href="images\Wish Club Logo.JPG" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <style>
       @font-face {
         font-family: 'Dune Rise';
@@ -52,11 +54,7 @@
  
   
    
-        // Mobile Menu Toggle
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.menu').classList.toggle('active');
-        });
-
+     
       
    
 
@@ -65,42 +63,40 @@
     
     
 
-     <nav class="navbar">
-      <div>
-        <div class="svg-container">
-          <div class="logo-container">
-           
-            <img src="images/Wish Club Logo.JPG" alt="Wish Club Logo">
-            <a class="logo-text" href="index.html" style="font-size: 20px; font-family: 'Dune Rise', sans-serif;">
-              WISH I CLUB
-            </a>
-            <!-- <div class="logo-text">WISH I CLUB</div> -->
-        </div>
-        
-  
-  
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-          </svg>
-        </div>
-       
-      
+    <nav class="navbar">
+      <!-- Logo Section -->
+      <div class="logo-container">
+          <img src="images/Wish Club Logo.JPG" alt="Wish Club Logo">
+          <a class="logo-text" href="index.html">WISH I CLUB</a>
       </div>
+  
+      <!-- Mobile Menu Icon -->
       <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  
+      <!-- Navigation Menu -->
       <ul class="menu">
           <li><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
           <li><a href="membeship.HTML">Membership</a></li>
           <li><a href="#">Contact</a></li>
       </ul>
-      
-        <div class="svg-container">
+  
+      <!-- User Icon -->
+      <div class="svg-container">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+              <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"/>
           </svg>
-        </div>
       </div>
-    </nav>
+  </nav>
+  
+  <script>
+      // JavaScript to toggle the mobile menu
+document.querySelector('.menu-toggle').addEventListener('click', function() {
+    document.querySelector('nav').classList.toggle('active'); // Toggle 'active' on the nav
+});
+
+  </script>
+  
 
     <div id="demo"></div>
 
