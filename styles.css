@@ -18,7 +18,8 @@ body {
   background-position: center;
   background-size: cover; /* Ensures the image covers the entire card */
   width: 100%;
-  height: 100%;
+
+  height: auto;
   box-shadow: 6px 6px 10px 2px rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
@@ -30,7 +31,7 @@ body {
 .card img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the card */
+  object-fit: fill; /* Ensures the image covers the card */
   aspect-ratio: 16 / 9; /* Forces landscape aspect ratio */
 }
 .card-content {
@@ -259,6 +260,7 @@ nav .nav-links a {
     flex-direction: column;
     align-items: center;
     position: absolute;
+    
     top: 60px;
     left: 0;
     right: 0;
@@ -492,22 +494,35 @@ nav > div:last-child .active:after {
   }
 
   @media (max-width: 768px) {
-    .card {
-      width: 100vw; /* Ensure the card fills the viewport width */
-      height: 100vh; /* Ensure the card fills the viewport height */
-      background-size: cover !important; /* Ensures full coverage */
-      background-position: center center !important; /* Centers the image */
-      background-repeat: no-repeat !important; /* Prevents tiling */
-      border-radius: 0; /* Removes rounded corners */
-      overflow: hidden; /* Prevents any overflow */
+    @media (max-width: 768px) {
+      .card {
+        width: 100vw; /* Full width */
+        height: 100vh; /* Full height */
+        background-size: cover !important; /* Ensures it fills the screen */
+        background-position: center center !important; /* Centers the image */
+        background-repeat: no-repeat !important; /* Prevents repetition */
+        border-radius: 0; /* Removes any rounded corners */
+        overflow: hidden; /* Prevents content from spilling */
+      }
+    
+      .card img {
+        position: absolute;
+        width: 100vw; /* Ensures full width */
+        height: 100vh; /* Ensures full height */
+        object-fit: cover; /* Ensures image covers the entire screen */
+        left: 0;
+        top: 0;
+      }
+    
+      /* Fix scrolling issue */
+      html, body {
+        overflow: hidden; /* Prevents the page from scrolling */
+        height: 100%; /* Ensures no extra spacing */
+        margin: 0;
+        padding: 0;
+      }
     }
-  
-    .card img {
-      width: 100vw; /* Force the image to cover full width */
-      height: 100vh; /* Force the image to cover full height */
-      object-fit: cover; /* Ensures the image fully fills the screen */
-    }
-  }
+    
   
 
   .card-content {
@@ -594,6 +609,19 @@ nav > div:last-child .active:after {
     font-size: 24px; /* Smaller font size for mobile */
   }
 }
+}
+
+@media (max-width: 768px) {
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden !important; /* Completely prevent scrolling */
+    position: fixed; /* Ensures no movement */
+    touch-action: none; /* Disables touch scrolling */
+  }
+}
+
+
 @media (max-width: 768px) {
   .full-card {
       width: 100%;
