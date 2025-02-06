@@ -405,6 +405,64 @@ function step() {
         });
     });
 }
+function updateCards() {
+    const [active, ...rest] = order;
+    
+    // Animate the main (active) card
+    gsap.to(getCard(active), {
+        x: 0,
+        y: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        zIndex: 20,
+        borderRadius: 0
+    });
+
+    // Animate the remaining cards (stacked)
+    rest.forEach((i, index) => {
+        gsap.to(getCard(i), {
+            x: offsetLeft + index * (cardWidth + gap),
+            y: offsetTop,
+            width: cardWidth,
+            height: cardHeight,
+            zIndex: 30,
+            delay: 0.05 * index,
+            ease
+        });
+    });
+
+    // Animate card content
+    gsap.to(getCardContent(active), { x: 0, y: 0, opacity: 1 });
+}
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+// Detect swipe start
+document.addEventListener("touchstart", (event) => {
+    touchStartX = event.touches[0].clientX;
+});
+
+// Detect swipe movement
+document.addEventListener("touchmove", (event) => {
+    touchEndX = event.touches[0].clientX;
+});
+
+// Detect swipe end and determine direction
+document.addEventListener("touchend", () => {
+    let swipeDistance = touchEndX - touchStartX;
+
+    if (swipeDistance > 50) {
+        // Swiped Right - Move to previous card
+        order.unshift(order.pop()); 
+        updateCards();
+    } else if (swipeDistance < -50) {
+        // Swiped Left - Move to next card
+        order.push(order.shift());
+        updateCards();
+    }
+});
+
 
 async function loop() {
     await animate(".indicator", 2, { x: 0 });
