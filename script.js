@@ -170,8 +170,8 @@ function init() {
 
     // Adjust card sizes and positions for mobile
     if (width <= 768) {
-        cardWidth = width * 0.8; // 80% of screen width
-        cardHeight = 200; // Fixed height for mobile
+        cardWidth = width * 0.6; // 80% of screen width
+        cardHeight = 100; // Fixed height for mobile
         offsetTop = height - cardHeight - 20; // Adjust to keep cards at the bottom
         offsetLeft = width * 0.1; // 10% of screen width
         gap = 20; // Smaller gap for mobile
