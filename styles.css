@@ -580,7 +580,7 @@ nav > div:last-child .active:after {
   }
 
   nav {
-    padding: 10px 10px 10px 20px; /* Adjust right padding to 10px */
+     padding: 10px 10px 10px 20px; /* Adjust right padding to 10px */
   }
 
   nav > div {
@@ -713,7 +713,13 @@ nav > div:last-child .active:after {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .logo-container img {
+    height: 60px; /* Adjust height to make the logo smaller */
+  }
 
+  .logo-text {
+    font-size: 18px; /* Reduce font size of the logo text */
+  }
   
   .menu {
       display: none;
