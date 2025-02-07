@@ -35,23 +35,38 @@
             margin-bottom: 30px;
         }
 
-        .profile img {
+        .profile-img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: #ddd;
-            display: block;
+            background: #d95d25;
+            color: white;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin: 0 auto;
+            position: relative;
         }
 
-        .profile h3 {
-            margin-top: 10px;
-            font-size: 18px;
+        .profile-img input {
+            display: none; /* Hide the file input */
         }
 
-        .profile p {
-            font-size: 14px;
-            color: gray;
+        .profile-img label {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 16px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .profile-img label:hover {
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .menu {
@@ -123,8 +138,9 @@
         }
 
         .info-card {
+            margin-bottom: 20px; /* Adds space between each info card */
+            padding: 15px; /* Adds internal spacing within each card */
             background: white;
-            padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: relative;
@@ -188,12 +204,19 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="profile">
+            <!-- Profile Image Section -->
             <div class="profile-img">
-                <span>I</span>
+                <span id="profile-initial">I</span>
+                <input type="file" id="upload-image" accept="image/*">
+                <label for="upload-image" class="edit-icon">
+                    <i class="fas fa-edit"></i>
+                </label>
             </div>
+
             <h3>Irakli Talavadze</h3>
             <p>ikakodesign@gmail.com</p>
         </div>
+
         <div class="menu">
             <a href="#" class="active">Personal information</a>
             <a href="#">Membership details</a>
@@ -240,6 +263,13 @@
                     <button class="save-btn" style="display: none;">Save</button>
                 </div>
             </div>
+           
+            <div class="info-card">
+                <strong>Contactable at</strong>
+                <span>ikakodesign@gmail.com <a href="#" class="edit-btn">Edit</a></span>
+                <!-- Editable Email -->
+                <input type="email" value="ikakodesign@gmail.com" style="display: none;">
+            </div>
         </div>
     </div>
 
@@ -270,12 +300,12 @@
             });
         });
     </script>
-<script>
-    if (window.location !== window.parent.location) {
-        window.top.location.href = window.location.href;
-    }
-</script>
+
+    <script>
+        if (window.location !== window.parent.location) {
+            window.top.location.href = window.location.href;
+        }
+    </script>
 
 </body>
 </html>
-
