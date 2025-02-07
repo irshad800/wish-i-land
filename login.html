@@ -19,10 +19,9 @@
             justify-content: center;
             min-height: 100vh;
             width: 100%;
-            background: url("login-hero-bg.jpg"), #000;
-            background-position: center;
-            background-size: cover;
+            background: transparent; /* Removed background image and color */
         }
+
         .wrapper {
             width: 400px;
             border-radius: 8px;
@@ -32,7 +31,9 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             color: #fff;
+            background: rgba(0, 0, 0, 0.4); /* Adjust transparency */
         }
+
         form {
             display: flex;
             flex-direction: column;
@@ -221,7 +222,7 @@
 
        <!-- Login Form -->
        <div class="wrapper" id="login-form">
-        <form action="#">
+        <form action="#" id="loginForm">
             <h2>Login</h2>
             <div class="input-field">
                 <input type="text" required>
@@ -251,7 +252,7 @@
 
     <!-- Sign-Up Form -->
     <div class="wrapper hidden" id="signup-form">
-        <form action="#">
+        <form action="#" id="signupForm">
             <h2>Sign Up</h2>
 
             <!-- Image Upload -->
@@ -322,15 +323,23 @@
         </form>
     </div>
 
-    
+<script>
+    function toggleForms() {
+        document.getElementById("login-form").classList.toggle("hidden");
+        document.getElementById("signup-form").classList.toggle("hidden");
+    }
 
+    // Redirect to dashboard.html after form submission
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent actual form submission
+        window.location.href = 'dashboard.html'; // Redirect to dashboard
+    });
 
-    <script>
-        function toggleForms() {
-            document.getElementById("login-form").classList.toggle("hidden");
-            document.getElementById("signup-form").classList.toggle("hidden");
-        }
-    </script>
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent actual form submission
+        window.location.href = 'dashboard.html'; // Redirect to dashboard
+    });
+</script>
 
 </body>
 </html>
