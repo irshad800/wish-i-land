@@ -270,6 +270,12 @@
             });
         });
     </script>
+<script>
+    if (window.location !== window.parent.location) {
+        window.top.location.href = window.location.href;
+    }
+</script>
 
 </body>
 </html>
+
