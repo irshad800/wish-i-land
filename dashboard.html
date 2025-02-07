@@ -6,7 +6,7 @@
     <title>Account Settings</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css'); /* Import Font Awesome for icons */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
         * {
             margin: 0;
@@ -42,10 +42,6 @@
             background: #ddd;
             display: block;
             margin: 0 auto;
-            font-size: 40px;
-            color: white;
-            text-align: center;
-            line-height: 80px;
         }
 
         .profile h3 {
@@ -131,6 +127,7 @@
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .info-card strong {
@@ -143,13 +140,17 @@
             font-size: 16px;
         }
 
-        .edit-btn {
+        .edit-btn, .save-btn {
             color: #d95d25;
             font-size: 14px;
             cursor: pointer;
+            margin-left: 10px;
+            border: none;
+            background: none;
+            font-weight: bold;
         }
 
-        .edit-btn:hover {
+        .edit-btn:hover, .save-btn:hover {
             text-decoration: underline;
         }
 
@@ -159,9 +160,10 @@
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            display: none;
         }
 
-        /* New Styles for the Name with Background */
+        /* Name Container */
         .name-container {
             background: #d95d25;
             color: white;
@@ -179,7 +181,6 @@
             margin-left: 10px;
             cursor: pointer;
         }
-
     </style>
 </head>
 <body>
@@ -188,7 +189,6 @@
     <div class="sidebar">
         <div class="profile">
             <div class="profile-img">
-                <!-- Display first letter of the name -->
                 <span>I</span>
             </div>
             <h3>Irakli Talavadze</h3>
@@ -211,109 +211,65 @@
         </div>
 
         <div class="info-container">
-            <p>Manage your personal information, including phone numbers and email addresses where you can be contacted.</p>
+            <p>Manage your personal information, including phone numbers and email addresses.</p>
 
-            <!-- Updated Name with Background -->
+            <!-- Name with Edit and Save -->
             <div class="info-card">
                 <strong>Name</strong>
                 <div class="name-container">
-                    Irakli Talavadze
+                    <span class="name-value">Irakli Talavadze</span>
                     <i class="fas fa-edit edit-icon"></i>
                 </div>
-                <!-- Editable Name -->
-                <input type="text" value="Irakli Talavadze" style="display: none;">
+                <input type="text" value="Irakli Talavadze">
+                <button class="save-btn" style="display: none;">Save</button>
             </div>
 
             <div class="info-grid">
                 <div class="info-card">
                     <strong>Date of Birth</strong>
-                    <span>07 July 1993 <a href="#" class="edit-btn">Edit</a></span>
-                    <!-- Editable DOB -->
-                    <input type="date" value="1993-07-07" style="display: none;">
+                    <span class="dob-value">07 July 1993</span>
+                    <button class="edit-btn">Edit</button>
+                    <input type="date" value="1993-07-07">
+                    <button class="save-btn" style="display: none;">Save</button>
                 </div>
                 <div class="info-card">
-                    <strong>Country Region</strong>
-                    <span>Georgia, Tbilisi <a href="#" class="edit-btn">Edit</a></span>
-                    <!-- Editable Country -->
-                    <input type="text" value="Georgia, Tbilisi" style="display: none;">
-                </div>
-                <div class="info-card">
-                    <strong>Language</strong>
-                    <span>English (UK) - English <a href="#" class="edit-btn">Edit</a></span>
-                    <!-- Editable Language -->
-                    <input type="text" value="English (UK) - English" style="display: none;">
-                </div>
-                <div class="info-card">
-                    <strong>Contactable at</strong>
-                    <span>ikakodesign@gmail.com <a href="#" class="edit-btn">Edit</a></span>
-                    <!-- Editable Email -->
-                    <input type="email" value="ikakodesign@gmail.com" style="display: none;">
+                    <strong>Country</strong>
+                    <span class="country-value">Georgia, Tbilisi</span>
+                    <button class="edit-btn">Edit</button>
+                    <input type="text" value="Georgia, Tbilisi">
+                    <button class="save-btn" style="display: none;">Save</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Toggle input visibility on Edit button click
-        const editButtons = document.querySelectorAll('.edit-btn');
-        editButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const infoCard = button.closest('.info-card');
-                const span = infoCard.querySelector('span');
-                const input = infoCard.querySelector('input');
-                span.style.display = (span.style.display === 'none') ? 'block' : 'none';
-                input.style.display = (input.style.display === 'none') ? 'block' : 'none';
+        document.querySelectorAll('.edit-btn, .edit-icon').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.info-card');
+                const span = card.querySelector('span');
+                const input = card.querySelector('input');
+                const saveBtn = card.querySelector('.save-btn');
+
+                span.style.display = 'none';
+                input.style.display = 'block';
+                saveBtn.style.display = 'inline-block';
             });
         });
 
-        // Toggle name input visibility on Edit icon click
-        const editIcons = document.querySelectorAll('.edit-icon');
-        editIcons.forEach(icon => {
-            icon.addEventListener('click', (e) => {
-                const nameContainer = icon.closest('.name-container');
-                const input = nameContainer.nextElementSibling; // Get the input below the name
-                nameContainer.style.display = 'none'; // Hide the name container
-                input.style.display = 'block'; // Show the input field
+        document.querySelectorAll('.save-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.info-card');
+                const span = card.querySelector('span');
+                const input = card.querySelector('input');
+
+                span.textContent = input.value;
+                span.style.display = 'inline';
+                input.style.display = 'none';
+                button.style.display = 'none';
             });
         });
     </script>
-
-<script>
-    // Function to toggle fullscreen mode
-    function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-            // Enter fullscreen mode
-            document.documentElement.requestFullscreen().catch(err => {
-                console.error(`Error attempting to enable fullscreen mode: ${err.message}`);
-            });
-        } else {
-            // Exit fullscreen mode
-            document.exitFullscreen();
-        }
-    }
-
-    // Automatically enter fullscreen when the dashboard loads
-    window.addEventListener('load', () => {
-        toggleFullscreen(); // Enable fullscreen on page load
-    });
-
-    // Optional: Add a button to toggle fullscreen manually
-    const fullscreenButton = document.createElement('button');
-    fullscreenButton.textContent = 'Toggle Fullscreen';
-    fullscreenButton.style.position = 'fixed';
-    fullscreenButton.style.bottom = '20px';
-    fullscreenButton.style.right = '20px';
-    fullscreenButton.style.zIndex = '1000';
-    fullscreenButton.style.padding = '10px 20px';
-    fullscreenButton.style.backgroundColor = '#d95d25';
-    fullscreenButton.style.color = '#fff';
-    fullscreenButton.style.border = 'none';
-    fullscreenButton.style.borderRadius = '5px';
-    fullscreenButton.style.cursor = 'pointer';
-    fullscreenButton.addEventListener('click', toggleFullscreen);
-    document.body.appendChild(fullscreenButton);
-</script>
 
 </body>
 </html>

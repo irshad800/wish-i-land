@@ -140,88 +140,29 @@
         }
         .hidden {
             display: none;
-        }.input-field.phone-field {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-}
+        }
 
-.input-field.phone-field select {
-    padding: 8px;
-    background: transparent;
-    color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+        /* Spinner animation */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #fff;
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
 
-.input-field.phone-field input {
-    flex: 1;
-    padding: 8px;
-    background: transparent;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.input-field.gender-field {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-
-.input-field.gender-field label {
-    font-size: 14px;
-}
-
-.input-field.file-input {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.input-field.file-input input {
-    margin-top: 5px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    background: #fff;
-    color: #000;
-    border-radius: 4px;
-}
-
-.gender-field {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-}
-
-.gender-options {
-    display: flex;
-    align-items: center;
-    gap: 15px; /* Adjust spacing between radio buttons */
-    margin-top: 5px;
-}
-
-.gender-options label {
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Space between radio button and text */
-    font-size: 14px;
-}
-
-.gender-options input[type="radio"] {
-    margin: 0; /* Remove default margin */
-    width: 16px; /* Set a fixed width for radio buttons */
-    height: 16px; /* Set a fixed height for radio buttons */
-}
-
-
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
 
-       <!-- Login Form -->
-       <div class="wrapper" id="login-form">
+    <!-- Login Form -->
+    <div class="wrapper" id="login-form">
         <form action="#" id="loginForm">
             <h2>Login</h2>
             <div class="input-field">
@@ -239,107 +180,36 @@
                 </label>
                 <a href="#">Forgot password?</a>
             </div>
-            <button type="submit">Log In</button>
+            <button type="submit" id="loginButton">Log In</button>
             <div class="google-signin">
                 <img src="../images/google/image.png" alt="Google Logo">
                 Sign in with Google
             </div>
             <div class="register">
-                <p>Don't have an account? <a href="#" onclick="toggleForms()">Register</a></p>
-            </div>
-        </form>
-    </div> <!-- ✅ **Fixed: Added missing closing div here!** -->
-
-    <!-- Sign-Up Form -->
-    <div class="wrapper hidden" id="signup-form">
-        <form action="#" id="signupForm">
-            <h2>Sign Up</h2>
-
-            <!-- Image Upload -->
-            <div class="input-field file-input">
-                <label for="profile-pic">Upload Profile Picture</label>
-                <input type="file" id="profile-pic" accept="image/*">
-            </div>
-
-            <!-- Full Name -->
-            <div class="input-field">
-                <input type="text" required>
-                <label>Full Name</label>
-            </div>
-
-            <!-- Email -->
-            <div class="input-field">
-                <input type="email" required>
-                <label>Email</label>
-            </div>
-
-            <!-- Phone Number with Country Code -->
-            <div class="input-field phone-field">
-                <select id="country-code">
-                    <option value="+1">+1 (USA)</option>
-                    <option value="+44">+44 (UK)</option>
-                    <option value="+91">+91 (India)</option>
-                    <option value="+61">+61 (Australia)</option>
-                    <option value="+81">+81 (Japan)</option>
-                </select>
-                <input type="tel" required placeholder="Phone Number">
-            </div>
-
-            <!-- Password -->
-            <div class="input-field">
-                <input type="password" required>
-                <label>Password</label>
-            </div>
-
-<!--          
-            <div class="input-field gender-field">
-              
-                <div class="gender-options">
-                    <label>
-                        <input type="radio" name="gender" value="male" required> Male
-                    </label>
-                    <label>
-                        <input type="radio" name="gender" value="female"> Female
-                    </label>
-                    <label>
-                        <input type="radio" name="gender" value="other"> Other
-                    </label>
-                </div>
-            </div> -->
-
-            <!-- Sign Up Button -->
-            <button type="submit">Sign Up</button>
-
-            <!-- Google Sign-In -->
-            <div class="google-signin">
-                <img src="../images/google/image.png" alt="Google Logo">
-                Sign up with Google
-            </div>
-
-            <!-- Switch to Login -->
-            <div class="login">
-                <p>Already have an account? <a href="#" onclick="toggleForms()">Log In</a></p>
+                <p>Don't have an account? <a href="#">Register</a></p>
             </div>
         </form>
     </div>
 
-<script>
-    function toggleForms() {
-        document.getElementById("login-form").classList.toggle("hidden");
-        document.getElementById("signup-form").classList.toggle("hidden");
-    }
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-    // Redirect to dashboard.html after form submission
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent actual form submission
-        window.location.href = 'dashboard.html'; // Redirect to dashboard
-    });
-
-    document.getElementById('signupForm').addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent actual form submission
-        window.location.href = 'dashboard.html'; // Redirect to dashboard
-    });
-</script>
+            let loginButton = document.getElementById("loginButton");
+            
+            // Store original button text
+            let originalText = loginButton.innerHTML;
+            
+            // Show loading spinner
+            loginButton.innerHTML = `<div class="spinner"></div>`;
+            loginButton.disabled = true; // Disable button to prevent multiple clicks
+            
+            // Simulate a minimum 3-second delay before redirecting
+            setTimeout(() => {
+                window.location.href = "dashboard.html";
+            }, 3000);
+        });
+    </script>
 
 </body>
 </html>
