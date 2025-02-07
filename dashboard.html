@@ -250,18 +250,38 @@
 
             /* Add this for horizontal menu layout on small screens */
             .menu {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 20px;
-            }
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 5px 0;
+    }
 
-            .menu a {
-                flex: 1;
-                padding: 10px;
-                text-align: center;
-                font-size: 14px;
-            }
-        }
+    .menu a {
+        flex: 1;
+        font-size: 12px; /* Decreased font size */
+        padding: 8px; /* Reduced padding */
+        text-align: center;
+        white-space: nowrap; /* Prevents text wrapping */
+    }
+    .sidebar {
+        padding: 10px;
+        width: 100%;
+    }
+
+    .profile {
+        margin-bottom: 15px;
+    }
+
+    .profile h3 {
+        font-size: 14px;
+    }
+
+    .profile p {
+        font-size: 12px;
+    }
+}
+
+        
 
         @media (max-width: 768px) {
             .header h2 {
@@ -296,6 +316,22 @@
         }
 
         @media (max-width: 480px) {
+            .menu a {
+        font-size: 10px; /* Even smaller font for very small screens */
+        padding: 6px;
+    }
+    
+    .sidebar {
+        padding: 8px;
+    }
+
+    .profile h3 {
+        font-size: 12px;
+    }
+
+    .profile p {
+        font-size: 10px;
+    }
             .header h2 {
                 font-size: 16px;
             }
