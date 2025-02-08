@@ -134,22 +134,103 @@
 </head>
 <body>
     <link rel="stylesheet" href="styles.css">
-    <nav>
-        <div>
-            <div class="logo-container">
-                <img src="images/Wish Club Logo.JPG" alt="Wish Club Logo">
-                <a class="logo-text" href="index.html" style="font-size: 20px; font-family: 'Dune Rise', sans-serif;">
-                    WISH I CLUB
-                </a>
-            </div>
-        </div>
-        <div>
-            <div><a href="index.html">Home</a></div>
-            <div><a href="about.html">About</a></div>
-            <div><a href="membership.html">Membership</a></div>
-            <div><a href="contact.html">Contact</a></div>
-        </div>
-    </nav>
+    <div id="loader">
+        <svg viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="20"></circle>
+        </svg> 
+      </div>
+      
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll("nav a");
+            const loader = document.getElementById("loader");
+      
+            links.forEach(link => {
+                link.addEventListener("click", function (e) {
+                    e.preventDefault(); // Prevent default navigation temporarily
+                    loader.style.display = "block"; // Show loader
+      
+                    setTimeout(() => {
+                        window.location.href = this.href; // Navigate to the page
+                    }, 1200); // Delay for smooth effect
+                });
+            });
+      
+            // Hide loader when the page fully loads
+            window.addEventListener("load", () => {
+                loader.style.display = "none";
+            });
+        }
+      
+      );
+  
+   
+    
+     
+       
+        
+     
+  
+  
+      </script>
+      
+      
+  
+   <nav class="navbar">
+   
+  
+      <!-- Logo Section -->
+      <div class="logo-container">
+          <img src="images/Wish Club Logo.JPG" alt="Wish Club Logo">
+          <a class="logo-text" href="index.html">WISH I CLUB</a>
+      </div>
+  
+      <!-- Mobile Menu Icon -->
+      <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  
+      <!-- Navigation Menu -->
+      <ul class="menu"> 
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="contact.html">Contact</a></li>
+      </ul>
+  <!-- User Icon (Click to Open Login Popup) -->
+  <div class="user-icon" onclick="openLoginPopup()">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"/>
+    </svg>
+  </div>
+  
+  <!-- Popup Container -->
+  <!-- Popup Container -->
+  <div id="loginPopup" class="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closeLoginPopup()">&times;</span>
+      <iframe src="login.html" width="100%" height="650px" frameborder="0"></iframe>
+    </div>
+  </div>
+  
+  </div>
+    <script>// JavaScript to open and close the popup
+  function openLoginPopup() {
+    document.getElementById("loginPopup").style.display = "block";
+  }
+  
+  function closeLoginPopup() {
+    document.getElementById("loginPopup").style.display = "none";
+  }
+  </script>
+  </nav>
+  
+    
+    <script>
+        // JavaScript to toggle the mobile menu
+  document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('nav').classList.toggle('active'); // Toggle 'active' on the nav
+  });
+  
+    </script>
 
     <div class="container">
         <!-- Left Contact Info -->
