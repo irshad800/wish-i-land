@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Auto Sliding Membership Cards</title>
+
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #b10052;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        .header-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .header-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Individual Card */
+        .card {
+            width: 80px;
+            height: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section for Full-Screen View -->
+    <div class="header-container">
+        <img id="full-screen-image" src="" alt="Full Image">
+    </div>
+
+    <!-- Cards Container -->
+    <div class="cards-container" id="cards-container">
+        <!-- Cards will be dynamically generated here -->
+    </div>
+
+    <script>
+        const data = [
+            {
+                place: "$15,000 annually",
+                title: "Pearl Patron",
+                title2: "Priority reservations, 24/7 butler service, and private spa treatments.",
+                description: "15 nights/year in deluxe rooms, private diving, and personalized gifts.",
+                image: 'assets/images/card_images/PEARL PATRON.png',
+                alt: 'Pearl Patron Membership Card'
+            },
+            {
+                place: "$35,000 annually",
+                title: "Sapphire Sentinel",
+                title2: "Private check-in, butler services, and tailored wellness.",
+                description: "15 nights/year in suite rooms, personalized touches, and exclusive rewards.",
+                image: 'assets/images/card_images/SAPPHIRE SENTINEL.png',
+                alt: 'Sapphire Sentinel Membership Card'
+            },
+            {
+                place: "$40,000 annually",
+                title: "Crystal Connoisseur",
+                title2: "Unrivaled access, private spa treatments, and exclusive rewards.",
+                description: "15 nights/year in penthouse suites, personalized gifts, and VIP events.",
+                image: 'assets/images/card_images/CRYSTAL CONNOISSEUR.png',
+                alt: 'Crystal Connoisseur Membership Card'
+            },
+            {
+                place: "$45,000 annually",
+                title: "Amber Advocate",
+                title2: "VIP access, personal concierge, and elite events.",
+                description: "10 nights/year in beach villas, tailored wellness, and curated dining.",
+                image: 'assets/images/card_images/AMBER ADVOCATE.png',
+                alt: 'Amber Advocate Membership Card'
+            },
+            {
+                place: "$50,000 annually",
+                title: "Aqua Astra",
+                title2: "Exclusive ocean experiences, wellness treatments, and oceanfront stays.",
+                description: "15 nights/year in beach villas, private dining, and security services.",
+                image: 'assets/images/card_images/AQUA ASTRA.png',
+                alt: 'Aqua Astra Membership Card'
+            },
+            {
+                place: "$60,000 annually",
+                title: "Titanium Treasure",
+                title2: "Private island hopping, scuba diving, and floating dining.",
+                description: "20 nights/year in private villas, personalized spa treatments, and VIP events.",
+                image: 'assets/images/card_images/TITANIUM TREASURE.png',
+                alt: 'Titanium Treasure Membership Card'
+            },
+            {
+                place: "$65,000 annually",
+                title: "Mystic Member",
+                title2: "Sunset cruises, mystic stays, and personalized wellness.",
+                description: "25 nights/year in beach villas, private chef dining, and special gifts.",
+                image: 'assets/images/card_images/MYSTIC MEMBER.png',
+                alt: 'Mystic Member Membership Card'
+            },
+            {
+                place: "$75,000 annually",
+                title: "Elysian Elite",
+                title2: "Private sky deck access, celestial wellness, and elite dining.",
+                description: "30 nights/year in beach villas, private yacht access, and exclusive celebrations.",
+                image: 'assets/images/card_images/ELYSIAN ELITE.png',
+                alt: 'Elysian Elite Membership Card'
+            },
+            {
+                place: "$85,000 annually",
+                title: "Topaz Titan",
+                title2: "Vibrant nightlife, exclusive entertainment, and luxury transport.",
+                description: "35 nights/year in private villas, private performances, and premium dining.",
+                image: 'assets/images/card_images/TOPAZ TITAN.png',
+                alt: 'Topaz Titan Membership Card'
+            },
+            {
+                place: "$100,000 annually",
+                title: "Diamond Dune",
+                title2: "Ultimate luxury with VIP services, private jet access, and exclusive stays.",
+                description: "40 nights/year in luxury accommodations, private chefs, and investment opportunities.",
+                image: 'assets/images/card_images/DIAMOND.png',
+                alt: 'Diamond Dune Membership Card'
+            }
+        ];
+
+        const fullScreenImage = document.getElementById("full-screen-image");
+        const cardsContainer = document.getElementById("cards-container");
+
+        // Render Cards
+        data.forEach((item, index) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.dataset.index = index;
+            card.innerHTML = `<img src="${item.image}" alt="${item.alt}">`;
+            cardsContainer.appendChild(card);
+        });
+
+        let currentIndex = 0;
+
+        function showNextCard() {
+            const nextImage = data[currentIndex].image;
+
+            // GSAP Animation
+            gsap.to(fullScreenImage, {
+                opacity: 0,
+                duration: 1,
+                onComplete: function() {
+                    fullScreenImage.src = nextImage;
+                    gsap.to(fullScreenImage, { opacity: 1, duration: 1 });
+                }
+            });
+
+            currentIndex = (currentIndex + 1) % data.length;
+            setTimeout(showNextCard, 3000); // Change every 3 seconds
+        }
+
+        // Start the slideshow
+        showNextCard();
+
+        // Add click event to manually switch cards
+        document.querySelectorAll(".card").forEach(card => {
+            card.addEventListener("click", function () {
+                currentIndex = parseInt(this.dataset.index);
+                showNextCard();
+            });
+        });
+
+    </script>
+
+</body>
+</html>

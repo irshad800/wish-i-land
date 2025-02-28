@@ -1,15 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500&display=swap");
 
-body {
+
+
+html, body {
   margin: 0;
-  background-color: #1a1a1a;
-  color: rgba(255, 255, 255, 0.87);
-  position: relative;
-  overflow: hidden;
-  font-family: "Inter", sans-serif;
+  padding: 0;
+  width: 100%;
+  height: 100%; /* Ensure page grows with content */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto !important; /* Ensure vertical scrolling */
+  position: relative; /* Prevents content from getting stuck */
 }
-
-
 
 .card {
   position: absolute;
@@ -526,7 +527,7 @@ nav > div:last-child .active:after {
     
       /* Fix scrolling issue */
       html, body {
-        overflow: hidden; /* Prevents the page from scrolling */
+        overflow: scroll; /* Prevents the page from scrolling */
         height: 100%; /* Ensures no extra spacing */
         margin: 0;
         padding: 0;
@@ -856,5 +857,4 @@ nav.active .menu {
     width: 90%; /* Make the popup wider on small screens */
     padding: 15px; /* Reduce padding for smaller screens */
   }
-}
 }
